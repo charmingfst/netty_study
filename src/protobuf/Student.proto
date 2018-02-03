@@ -1,0 +1,12 @@
+syntax="proto2";
+package com.chm.pb;
+
+option optimize_for = SPEED;
+option java_package="com.chm.bp";
+option java_outer_classname="PersonStudent";
+
+message Student {
+    required string name = 1;
+    optional int32 age = 2;
+    optional string address = 3;
+}

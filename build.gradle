@@ -1,0 +1,56 @@
+group 'org.chm'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'com.google.protobuf'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'io.netty:netty-all:4.1.15.Final'
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    compile 'com.google.protobuf:protobuf-java:3.3.1'
+    compile 'com.google.protobuf:protobuf-java-util:3.3.1'
+
+    compile 'org.apache.thrift:libthrift:0.10.0'
+
+    compile 'io.grpc:grpc-netty:1.4.0'
+    compile 'io.grpc:grpc-protobuf:1.4.0'
+    compile 'io.grpc:grpc-stub:1.4.0'
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        // ASSUMES GRADLE 2.12 OR HIGHER. Use plugin version 0.7.5 with earlier
+        // gradle versions
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.0'
+    }
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.2.0"
+    }
+    plugins {
+        grpc {
+            artifact = 'io.grpc:protoc-gen-grpc-java:1.4.0'
+        }
+    }
+    generateProtoTasks {
+        all()*.plugins {
+            grpc {
+                setOutputSubDir "java"
+            }
+        }
+    }
+    generatedFilesBaseDir = "$projectDir/src"
+}
+

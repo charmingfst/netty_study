@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--onsubmit=”retrun false”防止一个input在enter时发生自动提交-->
+<form action="http://www.baidu.com" onsubmit="return false">
+    <input type="text"/>
+</form>
+<-- 按enter自动提交 -->
+<form name='frm1' action="http://www.baidu.com">
+    <input type="text" name="userName"/>
+    <input type="text" name="passWord"/>
+    <input type="submit" value="提交1"/>
+</form>
+</body>
+</html>

@@ -1,0 +1,36 @@
+syntax = "proto2";
+package com.chm.datainfo;
+
+option java_package = "com.chm.pb";
+option java_outer_classname="MyDataInfo";
+
+message MyMessage {
+    enum DataType {
+        PersonType = 1;
+        AnimalType = 2;
+        FlowerType = 3;
+    }
+    required DataType data_type = 1;
+
+    oneof dataBody {
+        Person person = 2;
+        Animal animal = 3;
+        Flower flower = 4;
+    }
+}
+
+message Person {
+    optional string name = 1;
+    optional int32 age = 2;
+    optional string address = 3;
+}
+
+message Animal {
+    optional string name = 1;
+    optional int32 height = 2;
+}
+
+message Flower {
+    optional string name = 1;
+    optional string color = 2;
+}
